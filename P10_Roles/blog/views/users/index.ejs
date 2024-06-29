@@ -1,0 +1,35 @@
+ 
+<section> 
+<h1>
+    Users
+</h1>
+
+
+<table>
+    <% for (let user of users) { %>
+    <tr>
+        <td>
+            <a href="/users/<%= user.id %>" ><%= user.username %></a>
+            <%= user.isAdmin ? "(admin)" : "" %>
+        </td>
+        <td>
+            <% if ((locals.loginUser?.isAdmin || locals.loginUser?.id === user.id)&&locals.loginUser) { %>
+            <a href="/users/<%= user.id %>/edit" class="button">edit</a>
+            <% } %>
+
+        </td>
+        <td>
+            <% if (locals.loginUser?.isAdmin || locals.loginUser?.id === user.id) { %>
+            <a href="/users/<%= user.id %>?_method=DELETE"
+               onClick="return confirm('Delete user: <%= user.username %>');"
+               class="button">delete</a>
+               <%  } %>
+        </td>
+    </tr>
+    <%  } %>
+ 
+<% if (locals.loginUser && locals.loginUser.isAdmin) { %>
+
+<a href="/users/new" class="button">Create new user</a>
+<%  } %>
+</table>

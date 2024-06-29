@@ -1,0 +1,17 @@
+<section>
+    <div class="wideRow">
+        <label for="title" class="itemNarrow">Title:</label>
+        <input type="text" class="itemWide" id="title" name="title" value="<%=post.title%>" placeholder="Title" .autocomplete="off" />
+    </div>
+
+    <div class="wideRow">
+        <label for="body" class="itemNarrow">Body:</label>
+        <textarea class="itemWide" id="body" name="body" autocomplete="off"><%= post.body %></textarea>
+    </div>
+    <div>
+        <label for="image">Attach file (Max size 2MB):</label>
+        <input type="file" id="image" name="image" />
+    </div>
+    <input type="submit" name="enviar" id="enviar" value="Enviar">
+    <a href="/posts" class="button">Cancel</a>
+</section>

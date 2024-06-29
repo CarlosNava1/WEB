@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+     
+</head>
+<body>
+    <header class="main" id="mainHeader">
+        <h1> Blog </h1>
+        <div>
+            <% if (!locals.loginUser) { %>
+                
+                <a href="/login">Login</a>
+            <% } else { %>
+                
+                <a href="/users/<%= loginUser.id %>"><%= loginUser.username %></a>
+                <a href="/login?_method=DELETE">Logout</a>
+            <% } %>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/author">Author</a></li>
+            <li><a href="/posts">Posts</a></li>
+            <% if (locals.loginUser?.isAdmin) { %> 
+            <li><a href="/users">Users</a></li>
+            <% }%>
+        </ul>
+    </nav>
+    <main>
+        <%- body %>
+    </main>
+    <footer>
+        <p>&copy;   Mi Blog</p>
+    </footer>
+</body>
+</html>

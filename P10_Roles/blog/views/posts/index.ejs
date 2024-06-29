@@ -1,0 +1,33 @@
+ 
+ <section> 
+<body>
+    <section>
+    <% for (let post of posts) { %>
+        <article class="postShow">
+            <% include ../attachments/attachment %>
+            <h2><%= post.title %></h2>
+            <small class="author">by <%= post.author ? post.author.username : "Anonymous" %></small>
+         
+            <div>
+                <button onclick="location.href='/posts/<%= post.id %>'">Show</button>
+                <% if (locals.loginUser?.isAdmin || locals.loginUser?.id === post.authorId){ %>
+                <button onclick="location.href='/posts/<%= post.id %>/edit'">Edit</button>
+                <% } %>
+                <% if (locals.loginUser?.isAdmin || locals.loginUser?.id === post.authorId){ %> 
+                <form method="post" action="/posts/<%= post.id %>?_method=DELETE" enctype="multipart/form-data">
+                    <input type="submit" value="Delete">
+                </form>
+                <% } %>
+            </div>
+        </article>
+    <% }; %>
+    </section>
+    <div id="botonNew">
+        <% if (locals.loginUser) { %>
+        <button onclick="location.href='/posts/new'">Create New Post</button>
+        <% } %>
+    </div>
+</body>
+</section>
+
+ 

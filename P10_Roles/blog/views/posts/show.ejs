@@ -1,0 +1,18 @@
+ 
+ <section> 
+<body>
+    <article class="postShow">
+        <% include ../attachments/attachment %>
+        <h1><%= post.title %></h1>
+        <p><%= post.body %></p>
+        <td>
+            <% if (locals.loginUser?.isAdmin || locals.loginUser?.id === post.authorId){ %>
+            <a href="/posts/<%= post.id %>/edit" class="button2">Edit</a>
+            <% } %>
+            </td>
+            
+        <small id="author">by <%= post.author ? post.author.username : "Anonymous" %></small>
+        
+    </article>
+</body>
+</section>
